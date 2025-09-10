@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	<servlet>
+		<servlet-name>initServlet</servlet-name>
+		<servlet-class>boringcms.servlets.InitServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>xmlPageGenerator</servlet-name>
+		<servlet-class>boringcms.servlets.XmlServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>xmlPageGenerator</servlet-name>
+		<url-pattern>*.xml</url-pattern>
+		<url-pattern>/index.html</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>ConsoleSecurityFilter</filter-name>
+		<filter-class>boringcms.security.ConsoleSecurityFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>ConsoleSecurityFilter</filter-name>
+		<url-pattern>/admin/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>loginActionServlet</servlet-name>
+		<servlet-class>boringcms.security.LoginActionServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<servlet-name>logoutActionServlet</servlet-name>
+		<servlet-class>boringcms.security.LogoutActionServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>loginActionServlet</servlet-name>
+		<url-pattern>/j_admin_login</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>logoutActionServlet</servlet-name>
+		<url-pattern>/j_admin_logout</url-pattern>
+	</servlet-mapping>
+</web-app>

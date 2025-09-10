@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/dxsl" href="admin/login.xsl"?>
+<servlet>
+	<?java
+		class = "boringcms.security.LoginXmlView"
+	?>
+</servlet>

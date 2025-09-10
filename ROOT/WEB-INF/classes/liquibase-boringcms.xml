@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-1">
+		<createSequence sequenceName="hibernate_sequence" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-2">
+		<createTable tableName="contentcategory">
+			<column autoIncrement="true" name="id" type="BIGSERIAL">
+				<constraints primaryKey="true"
+					primaryKeyName="contentcategory_pkey" />
+			</column>
+			<column name="code" type="VARCHAR(255)" />
+			<column name="description" type="VARCHAR(255)" />
+			<column name="name" type="VARCHAR(255)" />
+			<column name="sequence" type="INTEGER" />
+			<column name="content_category_group_id" type="BIGINT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-3">
+		<createTable tableName="contentcategorygroup">
+			<column autoIncrement="true" name="id" type="BIGSERIAL">
+				<constraints primaryKey="true"
+					primaryKeyName="contentcategorygroup_pkey" />
+			</column>
+			<column name="code" type="VARCHAR(255)" />
+			<column name="columns" type="INTEGER" />
+			<column name="description" type="VARCHAR(255)" />
+			<column name="name" type="VARCHAR(255)" />
+			<column name="sequence" type="INTEGER" />
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-4">
+		<createTable tableName="content_field_language">
+			<column name="content_field_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="language_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-5">
+		<createTable tableName="content_folder_schema">
+			<column name="content_folder_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="content_schema_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-6">
+		<createTable tableName="content_category">
+			<column name="content_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="content_category_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-7">
+		<createTable tableName="contentfield">
+			<column autoIncrement="true" name="id" type="BIGSERIAL">
+				<constraints primaryKey="true"
+					primaryKeyName="contentfield_pkey" />
+			</column>
+			<column name="display" type="BOOLEAN" />
+			<column name="help" type="VARCHAR(255)" />
+			<column name="multilang" type="BOOLEAN" />
+			<column name="name" type="VARCHAR(255)" />
+			<column name="reserved1" type="VARCHAR(255)" />
+			<column name="reserved2" type="VARCHAR(255)" />
+			<column name="reserved3" type="VARCHAR(255)" />
+			<column name="size" type="INTEGER" />
+			<column name="content_schema_id" type="BIGINT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-8">
+		<createTable tableName="contentfieldvalue">
+			<column autoIncrement="true" name="id" type="BIGSERIAL">
+				<constraints primaryKey="true"
+					primaryKeyName="contentfieldvalue_pkey" />
+			</column>
+			<column name="value" type="VARCHAR(255)" />
+			<column name="content_field_id" type="BIGINT" />
+			<column name="language_id" type="BIGINT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-9">
+		<createTable tableName="contentfolder">
+			<column name="id" type="BIGINT">
+				<constraints primaryKey="true"
+					primaryKeyName="contentfolder_pkey" />
+			</column>
+			<column name="backxsl" type="VARCHAR(255)" />
+			<column name="code" type="VARCHAR(255)" />
+			<column name="countstatistics" type="BOOLEAN" />
+			<column name="description" type="VARCHAR(255)" />
+			<column name="href" type="VARCHAR(255)" />
+			<column name="label" type="VARCHAR(255)" />
+			<column name="name" type="VARCHAR(255)" />
+			<column name="path" type="VARCHAR(255)" />
+			<column name="securityparam" type="VARCHAR(255)" />
+			<column name="sequence" type="INTEGER" />
+			<column name="subcontents" type="VARCHAR(255)" />
+			<column name="visibleinmenu" type="BOOLEAN" />
+			<column name="webpath" type="VARCHAR(255)" />
+			<column name="wwwdomain" type="VARCHAR(255)" />
+			<column name="wwwprotocol" type="VARCHAR(255)" />
+			<column name="language_id" type="BIGINT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-10">
+		<createTable tableName="content">
+			<column autoIncrement="true" name="id" type="BIGSERIAL">
+				<constraints primaryKey="true"
+					primaryKeyName="content_pkey" />
+			</column>
+			<column name="autoid" type="INTEGER" />
+			<column name="body" type="TEXT" />
+			<column name="date1" type="TIMESTAMP WITHOUT TIME ZONE" />
+			<column name="date2" type="TIMESTAMP WITHOUT TIME ZONE" />
+			<column name="dhcm" type="INTEGER" />
+			<column name="dihc" type="INTEGER" />
+			<column name="contenthref" type="VARCHAR(255)" />
+			<column name="int1" type="INTEGER" />
+			<column name="int2" type="INTEGER" />
+			<column name="introduction" type="TEXT" />
+			<column name="keys" type="VARCHAR(255)" />
+			<column name="lastversion" type="INTEGER" />
+			<column name="parentid" type="INTEGER" />
+			<column name="parentverid" type="INTEGER" />
+			<column name="publisheddate"
+				type="TIMESTAMP WITHOUT TIME ZONE" />
+			<column name="sequence" type="INTEGER" />
+			<column name="string1" type="VARCHAR(255)" />
+			<column name="title" type="VARCHAR(255)" />
+			<column name="verid" type="INTEGER" />
+			<column name="author_id" type="BIGINT" />
+			<column name="content_folder_id" type="BIGINT" />
+			<column name="published_id" type="BIGINT" />
+			<column name="content_schema_id" type="BIGINT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-11">
+		<createTable tableName="contentstylesheet">
+			<column autoIncrement="true" name="id" type="BIGSERIAL">
+				<constraints primaryKey="true"
+					primaryKeyName="contentstylesheet_pkey" />
+			</column>
+			<column name="href" type="VARCHAR(255)" />
+			<column name="media" type="VARCHAR(255)" />
+			<column name="content_id" type="BIGINT" />
+			<column name="stylesheet_id" type="BIGINT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-12">
+		<createTable tableName="contentschema">
+			<column autoIncrement="true" name="id" type="BIGSERIAL">
+				<constraints primaryKey="true"
+					primaryKeyName="contentschema_pkey" />
+			</column>
+			<column name="backxsl" type="VARCHAR(255)" />
+			<column name="canhavechildren" type="BOOLEAN" />
+			<column name="code" type="VARCHAR(255)" />
+			<column name="navigate" type="BOOLEAN" />
+			<column name="relations" type="BOOLEAN" />
+			<column name="reserved1" type="VARCHAR(255)" />
+			<column name="schemesfilter" type="VARCHAR(255)" />
+			<column name="uniquenames" type="BOOLEAN" />
+			<column name="xsls" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-13">
+		<createTable tableName="contentrelation">
+			<column autoIncrement="true" name="id" type="BIGSERIAL">
+				<constraints primaryKey="true"
+					primaryKeyName="contentrelation_pkey" />
+			</column>
+			<column name="description" type="VARCHAR(255)" />
+			<column name="href" type="VARCHAR(255)" />
+			<column name="target" type="VARCHAR(255)" />
+			<column name="content_from_id" type="BIGINT" />
+			<column name="content_to_id" type="BIGINT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-14">
+		<createTable tableName="stylesheet">
+			<column autoIncrement="true" name="id" type="BIGSERIAL">
+				<constraints primaryKey="true"
+					primaryKeyName="stylesheet_pkey" />
+			</column>
+			<column name="code" type="VARCHAR(255)" />
+			<column name="description" type="VARCHAR(255)" />
+			<column name="path" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-15">
+		<createTable tableName="identity">
+			<column autoIncrement="true" name="id" type="BIGSERIAL">
+				<constraints primaryKey="true"
+					primaryKeyName="identity_pkey" />
+			</column>
+			<column name="created" type="TIMESTAMP WITHOUT TIME ZONE" />
+			<column name="name" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-16">
+		<createTable tableName="language">
+			<column autoIncrement="true" name="id" type="BIGSERIAL">
+				<constraints primaryKey="true"
+					primaryKeyName="language_pkey" />
+			</column>
+			<column name="code" type="VARCHAR(255)" />
+			<column name="defaultlang" type="BOOLEAN">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-17">
+		<createTable tableName="sendtoapproval">
+			<column autoIncrement="true" name="id" type="BIGSERIAL">
+				<constraints primaryKey="true"
+					primaryKeyName="sendtoapproval_pkey" />
+			</column>
+			<column name="asksentto" type="VARCHAR(255)" />
+			<column name="name" type="VARCHAR(255)" />
+			<column name="publishdate" type="TIMESTAMP WITHOUT TIME ZONE" />
+			<column name="publishername" type="VARCHAR(255)" />
+			<column name="publishersurname" type="VARCHAR(255)" />
+			<column name="senddate" type="TIMESTAMP WITHOUT TIME ZONE" />
+			<column name="status" type="VARCHAR(255)" />
+			<column name="surname" type="VARCHAR(255)" />
+			<column name="title" type="VARCHAR(255)" />
+			<column name="verid" type="INTEGER" />
+			<column name="content_id" type="BIGINT" />
+			<column name="identity_id" type="BIGINT" />
+		</createTable>
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-18">
+		<addForeignKeyConstraint
+			baseColumnNames="content_from_id"
+			baseTableName="contentrelation"
+			constraintName="fk2lrd8etcwntm78yqlaglkah31" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="content"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-19">
+		<addForeignKeyConstraint
+			baseColumnNames="content_id"
+			baseTableName="content_category"
+			constraintName="fk306v1cbbcd4ry8y1f47xtir9p" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="content"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-20">
+		<addForeignKeyConstraint
+			baseColumnNames="content_id"
+			baseTableName="contentstylesheet"
+			constraintName="fk362pairtw0y6s030fd3y07f74" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="content"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-21">
+		<addForeignKeyConstraint
+			baseColumnNames="content_schema_id" baseTableName="contentfield"
+			constraintName="fk5ondd3w2al0wl52amivy4fqbr" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="contentschema"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-22">
+		<addForeignKeyConstraint
+			baseColumnNames="identity_id" baseTableName="sendtoapproval"
+			constraintName="fk6mbpbv3dhrf9uth83mipjco6e" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="identity"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-23">
+		<addForeignKeyConstraint
+			baseColumnNames="language_id"
+			baseTableName="content_field_language"
+			constraintName="fk6wlwoljf5qr3bt6gg76fw70ys" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="language"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-24">
+		<addForeignKeyConstraint
+			baseColumnNames="content_schema_id" baseTableName="content"
+			constraintName="fk7syon1bsiiktm0u96fjixyths" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="contentschema"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-25">
+		<addForeignKeyConstraint
+			baseColumnNames="author_id" baseTableName="content"
+			constraintName="fk9mlg36qdoeicjx13l0ker2w1r" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="identity"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-26">
+		<addForeignKeyConstraint
+			baseColumnNames="content_field_id"
+			baseTableName="contentfieldvalue"
+			constraintName="fkahy0kw6dny0m0n62wtouy7o7f" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="contentfield"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-27">
+		<addForeignKeyConstraint
+			baseColumnNames="published_id" baseTableName="content"
+			constraintName="fkau764v44gwuf30urf72kjju31" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="content"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-28">
+		<addForeignKeyConstraint
+			baseColumnNames="content_to_id"
+			baseTableName="contentrelation"
+			constraintName="fkcyq6ud08i9t2wtklv7jh7dno8" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="content"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-29">
+		<addForeignKeyConstraint
+			baseColumnNames="content_folder_id" baseTableName="content"
+			constraintName="fkdc5sy4d3uh8aefw41o84pd145" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="contentfolder"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-30">
+		<addForeignKeyConstraint
+			baseColumnNames="content_category_group_id" baseTableName="contentcategory"
+			constraintName="fke3by62styfqq3c3jcsjrxaeal" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="contentcategorygroup"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-31">
+		<addForeignKeyConstraint
+			baseColumnNames="stylesheet_id" baseTableName="contentstylesheet"
+			constraintName="fkiajg6srcaf23gvpoclqfi55c1" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="stylesheet"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-32">
+		<addForeignKeyConstraint
+			baseColumnNames="content_id" baseTableName="sendtoapproval"
+			constraintName="fkilib69gypi4x2ml06grmlhxk" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="content"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-33">
+		<addForeignKeyConstraint
+			baseColumnNames="language_id" baseTableName="contentfolder"
+			constraintName="fkk9ocal67wg3tvw2jgfq3qmkee" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="language"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-34">
+		<addForeignKeyConstraint
+			baseColumnNames="content_folder_id"
+			baseTableName="content_folder_schema"
+			constraintName="fkkc46md04tom02pyn7rq1bmyn1" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="contentfolder"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-35">
+		<addForeignKeyConstraint
+			baseColumnNames="content_field_id"
+			baseTableName="content_field_language"
+			constraintName="fkkv61if1kb4n2uaoij3ghcgy2i" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="contentfield"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-36">
+		<addForeignKeyConstraint
+			baseColumnNames="content_schema_id"
+			baseTableName="content_folder_schema"
+			constraintName="fkoaqwc3w46oj3uc5wukhw00bn" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="contentschema"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-37">
+		<addForeignKeyConstraint
+			baseColumnNames="language_id" baseTableName="contentfieldvalue"
+			constraintName="fkqsftkcarfjavxlqkngktyoc2q" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="language"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite (generated)"
+		id="1541440997629-38">
+		<addForeignKeyConstraint
+			baseColumnNames="content_category_id"
+			baseTableName="content_category"
+			constraintName="fkrisabukint4h8pn2favldb9tw" deferrable="false"
+			initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+			referencedColumnNames="id" referencedTableName="contentcategory"
+			validate="true" />
+	</changeSet>
+	<changeSet author="stagyrite" id="offsetdatetime-with-time-zone">
+		<modifyDataType tableName="content" columnName="date1"
+			newDataType="TIMESTAMP WITH TIME ZONE" />
+		<modifyDataType tableName="content" columnName="date2"
+			newDataType="TIMESTAMP WITH TIME ZONE" />
+		<modifyDataType tableName="content"
+			columnName="publisheddate"
+			newDataType="TIMESTAMP WITH TIME ZONE" />
+		<modifyDataType tableName="identity" columnName="created"
+			newDataType="TIMESTAMP WITH TIME ZONE" />
+		<modifyDataType tableName="sendtoapproval"
+			columnName="publishdate"
+			newDataType="TIMESTAMP WITH TIME ZONE" />
+		<modifyDataType tableName="sendtoapproval"
+			columnName="senddate"
+			newDataType="TIMESTAMP WITH TIME ZONE" />
+		<rollback>
+			<modifyDataType tableName="content" columnName="date1"
+				newDataType="TIMESTAMP WITHOUT TIME ZONE" />
+			<modifyDataType tableName="content" columnName="date2"
+				newDataType="TIMESTAMP WITHOUT TIME ZONE" />
+			<modifyDataType tableName="content"
+				columnName="publisheddate"
+				newDataType="TIMESTAMP WITHOUT TIME ZONE" />
+			<modifyDataType tableName="identity" columnName="created"
+				newDataType="TIMESTAMP WITHOUT TIME ZONE" />
+			<modifyDataType tableName="sendtoapproval"
+				columnName="publishdate"
+				newDataType="TIMESTAMP WITHOUT TIME ZONE" />
+			<modifyDataType tableName="sendtoapproval"
+				columnName="senddate"
+				newDataType="TIMESTAMP WITHOUT TIME ZONE" />
+		</rollback>
+	</changeSet>
+</databaseChangeLog>

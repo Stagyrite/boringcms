@@ -1,0 +1,50 @@
+networks:
+  db_net:
+
+volumes:
+  pgdata:
+
+services:
+
+  tomcat:
+    image: stagyrite/boringcms:latest
+    build:
+      context: .
+      additional_contexts:
+        m2: ${HOME}/.m2
+      args:
+        MAVEN_FLAGS: ${MAVEN_FLAGS--o}
+    environment:
+      JAVA_OPTS: >-
+        -Dhibernate.connection.url=jdbc:postgresql://db:5432/boringcms
+        -Dhibernate.connection.username=boringcms
+        -Dhibernate.connection.password=2a57606710
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - db_net
+    ports:
+      - "${HTTP_PORT:-8080}:8080"
+    hostname: boringcms
+    restart: unless-stopped
+
+  db:
+    image: postgres:13-bullseye
+    command: postgres -c 'max_connections=400' -c 'shared_buffers=128MB'
+    environment:
+      "POSTGRES_USER": 'boringcms'
+      "POSTGRES_PASSWORD": '2a57606710'
+      "POSTGRES_DB": 'boringcms'
+    ports:
+      - "${DB_PORT:-5433}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - db_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U boringcms -d boringcms"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped

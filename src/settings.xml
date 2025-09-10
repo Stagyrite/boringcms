@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0
+                              https://maven.apache.org/xsd/settings-1.2.0.xsd">
+
+  <!--
+    MINIMAL BOOTSTRAP CONFIGURATION for B2CIAM-iam-tests
+
+    Purpose: Only provide repositories needed to resolve dependencies.
+
+    Required Environment Variables (set by OneFlow):
+    - ONEFLOW_ARTIFACTORY_DOWNLOAD_USERNAME: Artifactory service account
+    - ONEFLOW_ARTIFACTORY_DOWNLOAD_PASSWORD: Artifactory API token
+  -->
+
+  <servers>
+    <!-- Core repositories -->
+    <server>
+      <id>ppt-maven-virtual</id>
+      <username>${env.ONEFLOW_ARTIFACTORY_DOWNLOAD_USERNAME}</username>
+      <password>${env.ONEFLOW_ARTIFACTORY_DOWNLOAD_PASSWORD}</password>
+    </server>
+
+    <server>
+      <id>central</id>
+      <username>${env.ONEFLOW_ARTIFACTORY_DOWNLOAD_USERNAME}</username>
+      <password>${env.ONEFLOW_ARTIFACTORY_DOWNLOAD_PASSWORD}</password>
+    </server>
+
+    <server>
+      <id>releases</id>
+      <username>${env.ONEFLOW_ARTIFACTORY_DOWNLOAD_USERNAME}</username>
+      <password>${env.ONEFLOW_ARTIFACTORY_DOWNLOAD_PASSWORD}</password>
+    </server>
+
+    <server>
+      <id>snapshots</id>
+      <username>${env.ONEFLOW_ARTIFACTORY_DOWNLOAD_USERNAME}</username>
+      <password>${env.ONEFLOW_ARTIFACTORY_DOWNLOAD_PASSWORD}</password>
+    </server>
+
+    <!-- Mirror authentication -->
+    <server>
+      <id>artifactory-central-mirror</id>
+      <username>${env.ONEFLOW_ARTIFACTORY_DOWNLOAD_USERNAME}</username>
+      <password>${env.ONEFLOW_ARTIFACTORY_DOWNLOAD_PASSWORD}</password>
+    </server>
+
+    <server>
+      <id>ppt-maven-virtual-mirror</id>
+      <username>${env.ONEFLOW_ARTIFACTORY_DOWNLOAD_USERNAME}</username>
+      <password>${env.ONEFLOW_ARTIFACTORY_DOWNLOAD_PASSWORD}</password>
+    </server>
+  </servers>
+
+  <mirrors>
+    <!-- Primary: Maven Central via central-maven-new (OneFlow recommended) -->
+    <mirror>
+      <id>artifactory-central-mirror</id>
+      <name>Artifactory Central Mirror (central-maven-new)</name>
+      <url>https://artifactory.trusted.visa.com/central-maven-new</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+
+    <!-- Fallback: All other repositories via ppt-maven-virtual -->
+    <mirror>
+      <id>ppt-maven-virtual-mirror</id>
+      <name>PPT Maven Virtual (Fallback for all other repos)</name>
+      <url>https://artifactory.trusted.visa.com/ppt-maven-virtual</url>
+      <mirrorOf>*,!central</mirrorOf>
+    </mirror>
+  </mirrors>
+
+  <profiles>
+    <profile>
+      <id>bootstrap</id>
+
+      <repositories>
+        <!-- Maven Central -->
+        <repository>
+          <id>central</id>
+          <name>Maven Central via Artifactory</name>
+          <url>https://artifactory.trusted.visa.com/central-maven-new</url>
+          <snapshots><enabled>false</enabled></snapshots>
+          <releases><enabled>true</enabled></releases>
+        </repository>
+
+        <!-- Visa Releases -->
+        <repository>
+          <id>releases</id>
+          <name>Visa Artifactory Releases</name>
+          <url>https://artifactory.trusted.visa.com/releases</url>
+          <snapshots><enabled>false</enabled></snapshots>
+          <releases><enabled>true</enabled></releases>
+        </repository>
+
+        <!-- Visa Snapshots -->
+        <repository>
+          <id>snapshots</id>
+          <name>Visa Artifactory Snapshots</name>
+          <url>https://artifactory.trusted.visa.com/snapshots</url>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>daily</updatePolicy>
+          </snapshots>
+          <releases><enabled>false</enabled></releases>
+        </repository>
+
+        <!-- PPT Maven Virtual -->
+        <repository>
+          <id>ppt-maven-virtual</id>
+          <name>PPT Maven Virtual Repo</name>
+          <url>https://artifactory.trusted.visa.com/ppt-maven-virtual</url>
+          <snapshots><enabled>true</enabled></snapshots>
+          <releases><enabled>true</enabled></releases>
+        </repository>
+      </repositories>
+
+      <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <url>https://artifactory.trusted.visa.com/central-maven-new</url>
+        </pluginRepository>
+
+        <pluginRepository>
+          <id>releases</id>
+          <url>https://artifactory.trusted.visa.com/releases</url>
+        </pluginRepository>
+
+        <pluginRepository>
+          <id>ppt-maven-virtual</id>
+          <name>PPT Maven Virtual Repo</name>
+          <url>https://artifactory.trusted.visa.com/ppt-maven-virtual</url>
+        </pluginRepository>
+      </pluginRepositories>
+
+      <properties>
+        <maven.wagon.http.ssl.insecure>false</maven.wagon.http.ssl.insecure>
+        <maven.wagon.http.ssl.allowall>false</maven.wagon.http.ssl.allowall>
+        <maven.artifact.threads>5</maven.artifact.threads>
+      </properties>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>bootstrap</activeProfile>
+  </activeProfiles>
+</settings>
