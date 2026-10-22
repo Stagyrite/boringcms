@@ -30,5 +30,5 @@ web technologies.
 
 ## HL7v2 Parser
 
-BoringCMS contains a HL7v2 parser. Check out its documentation [HL7v2.md](HL7v2.md).
+BoringCMS contains a HL7v2 parser. Check out its documentation [HL7v2](HL7v2.md).
 
